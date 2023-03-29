@@ -2,3 +2,6 @@
 broker/target
 producer/target
 consumer/target
+
+# mac files
+DS_Store

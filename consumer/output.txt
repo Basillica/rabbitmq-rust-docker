@@ -263,3 +263,16 @@ timestamp: 1680090633, power_value: 90, pv_value: 1199
 timestamp: 1680090639, power_value: 87, pv_value: 1198 
 timestamp: 1680090644, power_value: 88, pv_value: 1200 
 timestamp: 1680090649, power_value: 88, pv_value: 1200 
+timestamp: 1680090654, power_value: 90, pv_value: 1197 
+timestamp: 1680090659, power_value: 90, pv_value: 1200 
+timestamp: 1680090664, power_value: 87, pv_value: 1199 
+timestamp: 1680090670, power_value: 88, pv_value: 1198 
+timestamp: 1680090675, power_value: 87, pv_value: 1197 
+timestamp: 1680090680, power_value: 87, pv_value: 1198 
+timestamp: 1680090685, power_value: 90, pv_value: 1200 
+timestamp: 1680090690, power_value: 89, pv_value: 1200 
+timestamp: 1680090695, power_value: 88, pv_value: 1200 
+timestamp: 1680090700, power_value: 89, pv_value: 1199 
+timestamp: 1680090706, power_value: 89, pv_value: 1197 
+timestamp: 1680090711, power_value: 88, pv_value: 1198 
+timestamp: 1680090716, power_value: 89, pv_value: 1197 
