@@ -1,0 +1,101 @@
+version: '3.8'
+services:
+  rabbitmq:
+    container_name: rabbitmq
+    image: rabbitmq:3.9.14-management-alpine
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /var/lib/rabbitmq:/var/lib/rabbitmq
+      - 'rabbitmq_data:/data'
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+      - RABBITMQ_DEFAULT_VHOST=DSrabbitmq
+      # - RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS="-rabbit inet_default_listen_options [{nodelay,true},{backlog,1024},{linger,{true,0}}]"
+    networks:
+      - mobility-house-network
+
+  # producer:
+  #   build: ./producer
+  #   ports:
+  #     - "8081:8081"
+  #   depends_on:
+  #     - broker
+  #   links:
+  #     - broker
+  #   deploy:
+  #     mode: replicated
+  #     replicas: 1
+  #   environment:
+  #     - RABBITMQ_URI=amqp://guest:guest@rabbitmq:5672/
+  #     - PROD_HTTP_ADDR=0.0.0.0:8080
+  #     - PROD_APP_DETAILED_VERSION=true
+  #   networks:
+  #     - mobility-house-network
+    
+  # consumer:
+  #   build: ./consumer
+  #   ports:
+  #     - "9091:9091"
+  #   depends_on:
+  #     - broker
+  #   links:
+  #     - broker
+  #   deploy:
+  #     mode: replicated
+  #     replicas: 1
+  #   environment:
+  #     - RABBITMQ_URI=amqp://guest:guest@rabbitmq:5672/
+  #     - PROD_HTTP_ADDR=0.0.0.0:8080
+  #     - PROD_APP_DETAILED_VERSION=true
+  #   networks:
+  #     - mobility-house-network
+    
+  # broker:
+  #   container_name: broker
+  #   build: ./broker
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - rabbitmq
+  #   links:
+  #     - rabbitmq
+  #   environment:
+  #     - PROD_HTTP_ADDR=0.0.0.0:8080
+  #     - PROD_APP_DETAILED_VERSION=true
+  #     - RABBITMQ_URI=amqp://guest:guest@rabbitmq:5672/
+  #     - RABBITMQ_HOST=DSrabbitmq
+  #   deploy:
+  #     mode: replicated
+  #     replicas: 1
+  #   networks:
+  #     - mobility-house-network
+
+  # cron:
+  #   build: ./cron
+  #   # ports:
+  #   #   - "8080:8080"
+  #   depends_on:
+  #     - producer
+  #   links:
+  #     - producer
+  #   environment:
+  #     - PROD_HTTP_ADDR=0.0.0.0:8080
+  #     - PROD_APP_DETAILED_VERSION=true
+  #     - RABBITMQ_URI=amqp://guest:guest@rabbitmq:5672/
+  #   deploy:
+  #     mode: replicated
+  #     replicas: 1
+  #   networks:
+  #     - mobility-house-network
+
+volumes:
+  rabbitmq_data:
+
+
+networks:
+  mobility-house-network:
+# https://github.com/rabbitmq/rabbitmq-stream-rust-client
